@@ -1,7 +1,9 @@
-<script setup></script>
+<script setup>
+import ButtonPreset from "@/theme/button"
+</script>
 
 <template>
-    <router-view />
+  <router-view/>
 </template>
 
 <style scoped></style>

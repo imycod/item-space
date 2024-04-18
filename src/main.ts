@@ -1,8 +1,8 @@
-import { createApp } from 'vue';
+import {createApp} from 'vue';
 import App from './App.vue';
 import router from './router';
-
 import PrimeVue from 'primevue/config';
+import {usePassThrough} from "primevue/passthrough";
 import AutoComplete from 'primevue/autocomplete';
 import Accordion from 'primevue/accordion';
 import AccordionTab from 'primevue/accordiontab';
@@ -109,11 +109,26 @@ import VirtualScroller from 'primevue/virtualscroller';
 import BlockViewer from '@/components/BlockViewer.vue';
 
 import '@/assets/styles.scss';
+// import '@/assets/wind.css'
+import Wind from "@/theme";
+// import Lara from "@/presets/lara"
 
 const app = createApp(App);
 
 app.use(router);
-app.use(PrimeVue, { ripple: true });
+
+const CustomPreset = usePassThrough(
+	// Lara,
+	{},
+	// Wind,
+	{mergeSections: true, mergeProps: true}
+);
+
+app.use(PrimeVue, {
+	ripple: true,
+	unstyled: false,
+	// pt: CustomPreset
+});
 app.use(ToastService);
 app.use(DialogService);
 app.use(ConfirmationService);
