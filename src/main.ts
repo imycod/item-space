@@ -110,7 +110,7 @@ import BlockViewer from '@/components/BlockViewer.vue';
 
 import '@/assets/styles.scss';
 // import '@/assets/wind.css'
-import Wind from "@/theme";
+// import Wind from "@/presets/wind";
 // import Lara from "@/presets/lara"
 
 const app = createApp(App);
