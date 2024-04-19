@@ -1,5 +1,4 @@
 <script setup>
-import ButtonPreset from "@/theme/button"
 </script>
 
 <template>
