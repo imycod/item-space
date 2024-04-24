@@ -1,4 +1,4 @@
-import { defineStore } from 'pinia';
+import {defineStore} from 'pinia';
 
 export const useThemeConfig = defineStore('themeConfig', {
     state: (): ThemeConfigState => ({
@@ -142,8 +142,11 @@ export const useThemeConfig = defineStore('themeConfig', {
         },
     }),
     actions: {
-        setThemeConfig(data: ThemeConfigState) {
-            this.themeConfig = data.themeConfig;
+        setThemeConfig(data:any) {
+            this.themeConfig = {
+                ...this.themeConfig,
+                ...data,
+            }
         },
     },
 });

@@ -1,19 +1,15 @@
 import {createRouter, createWebHistory} from 'vue-router';
 import AppLayout from '@/layout/AppLayout.vue';
 
-const itemPage = [
+export const itemPage = [
     {
         path: '/',
-        redirect: '/item/dashboard',
-    },
-    {
-        path: '/item/dashboard',
         name: 'dashboard',
         component: () => import('@/views/item/Dashboard.vue')
     }
 ]
 
-const defaultPage = [
+export const defaultPage = [
     {
         path: '/',
         component: AppLayout,

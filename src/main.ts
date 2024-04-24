@@ -1,6 +1,6 @@
 import {createApp} from 'vue';
 import App from './App.vue';
-import router from '@/router/index.js';
+import router from '@/router';
 import pinia from "@/stores"
 import { i18n } from '@/i18n';
 import PrimeVue from 'primevue/config';

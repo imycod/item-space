@@ -1,6 +1,6 @@
 <script setup lang="ts">
 
-import AppConfig from "@/layout/AppConfig.vue";
+import AppConfig from "./component/AppConfig.vue";
 </script>
 
 <template>
