@@ -44,6 +44,8 @@ function onLayoutModeChange(value: string) {
     })
   }
   router.replace(router.currentRoute.value.fullPath)
+  router.removeRoute('item')
+  router.replace('/')
 }
 </script>
 

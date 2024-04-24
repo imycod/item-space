@@ -1,11 +1,20 @@
 import {createRouter, createWebHistory} from 'vue-router';
 import AppLayout from '@/layout/AppLayout.vue';
+import ItemAppLayout from "@/views/item/component/AppLayout.vue"
 
 export const itemPage = [
     {
         path: '/',
-        name: 'dashboard',
-        component: () => import('@/views/item/Dashboard.vue')
+        name: 'item',
+        redirect: '/dashboard',
+        component: ItemAppLayout,
+        children: [
+            {
+                path: '/dashboard',
+                name: 'dashboard',
+                component: () => import('@/views/item/Dashboard.vue')
+            }
+        ]
     }
 ]
 
