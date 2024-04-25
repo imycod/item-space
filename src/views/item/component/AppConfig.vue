@@ -2,8 +2,10 @@
 import {ref} from 'vue';
 import {usePrimeVue} from 'primevue/config';
 import {useLayout} from "@/layout/composables/layout.js";
-import {defaultPage, itemPage} from "@/router";
+import {defaultPage} from "@/router";
 import router from "@/router";
+import {useThemeConfig} from "@/stores/themeConfig.ts";
+import {useI18n} from "vue-i18n";
 
 defineProps({
   simple: {
@@ -47,6 +49,22 @@ function onLayoutModeChange(value: string) {
   router.removeRoute('item')
   router.replace('/')
 }
+
+
+const isLanguage = ref(false)
+const stores = useThemeConfig()
+const {locale} = useI18n()
+
+function onLanguageChange(value: boolean) {
+  const lang = value ? 'zh-cn' : 'en';
+  stores.setThemeConfig({
+    globalI18n: lang
+  })
+
+  locale.value = lang
+  console.log(lang)
+}
+
 </script>
 
 <template>
@@ -64,6 +82,11 @@ function onLayoutModeChange(value: string) {
       <section class="py-4 flex align-items-center justify-content-between border-bottom-1 surface-border">
         <span class="text-xl font-semibold">Components</span>
         <InputSwitch v-model="isComponentView" @update:modelValue="onLayoutModeChange('components')"/>
+      </section>
+
+      <section class="py-4 flex align-items-center justify-content-between border-bottom-1 surface-border">
+        <span class="text-xl font-semibold">{{ $t("user.title1") }}</span>
+        <InputSwitch v-model="isLanguage" @update:modelValue="onLanguageChange"/>
       </section>
     </div>
   </Sidebar>

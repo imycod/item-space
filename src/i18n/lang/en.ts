@@ -19,7 +19,7 @@ export default {
     },
     noAccess: {
         accessTitle: 'You Are Not Authorized to Operate~',
-        accessMsg: 'Contact Information: Add QQ Group Discussion 665452019',
+        accessMsg: 'Contact Information: Add QQ Discussion 317009160',
         accessBtn: 'Reauthorization',
     },
     layout: {
@@ -28,7 +28,4 @@ export default {
     upgrade: {
         title: 'New Version',
     },
-    btn: {
-        lang: 'handover lang',
-    }
 };
