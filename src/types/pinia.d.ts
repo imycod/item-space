@@ -1,3 +1,14 @@
+
+// 用户信息
+declare interface UserInfosState<T = any> {
+    userInfos: {
+        authBtnList: string[];
+        roles: string[];
+        userName: string;
+        [key: string]: T;
+    };
+}
+
 // 布局配置
 declare interface ThemeConfigState {
     themeConfig: {
