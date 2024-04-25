@@ -1,11 +1,7 @@
-<script>
-export default {
-  name: 'App'
-}
-</script>
+<script setup></script>
 
 <template>
   <router-view/>
 </template>
 
-<style scoped></style>
+<style lang="scss" scoped></style>

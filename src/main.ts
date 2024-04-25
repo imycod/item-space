@@ -1,6 +1,8 @@
 import {createApp} from 'vue';
 import App from './App.vue';
-import router from './router';
+import router from '@/router';
+import pinia from "@/stores"
+import { i18n } from '@/i18n';
 import PrimeVue from 'primevue/config';
 import {usePassThrough} from "primevue/passthrough";
 import AutoComplete from 'primevue/autocomplete';
@@ -116,6 +118,9 @@ import '@/assets/styles.scss';
 const app = createApp(App);
 
 app.use(router);
+app.use(pinia);
+// 可以继续在这里引入element等其它ui库
+app.use(i18n);
 
 const CustomPreset = usePassThrough(
 	// Lara,
@@ -126,13 +131,12 @@ const CustomPreset = usePassThrough(
 
 app.use(PrimeVue, {
 	ripple: true,
-	unstyled: false,
+	// unstyled: false,
 	// pt: CustomPreset
 });
 app.use(ToastService);
 app.use(DialogService);
 app.use(ConfirmationService);
-
 app.directive('tooltip', Tooltip);
 app.directive('badge', BadgeDirective);
 app.directive('ripple', Ripple);
