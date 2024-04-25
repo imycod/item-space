@@ -3,7 +3,7 @@
 
 <template>
   <button class="bg-purple-500">button</button>
-  <Button>button</Button>
+  <Button>{{$t('common.button')}}</Button>
 </template>
 
 <style scoped lang="scss">

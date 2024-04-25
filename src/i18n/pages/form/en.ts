@@ -1,6 +1,7 @@
 // Improved versions of each word or sentence
 export default {
     common: {
+        button:'button',
         queryBtn: 'Query',
         addBtn: 'Add',
         editBtn: 'Edit',

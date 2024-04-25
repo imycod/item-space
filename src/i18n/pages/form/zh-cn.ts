@@ -1,6 +1,7 @@
 // 定义通用内容
 export default {
 	common: {
+		button:'按钮',
 		queryBtn: '查询',
 		addBtn: '新 增',
 		editBtn: '修 改',
