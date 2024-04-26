@@ -6,7 +6,9 @@ const defaultOptions = { selector: '', should: 'exist', testData: {} }
 
 export function addValidateCommands() {
 	Cypress.Commands.add('validate', (name, stateOrOptions, options) => {
-
+		console.log('stateOrOptions---',stateOrOptions)
+		console.log('name---',name)
+		console.log('validators---',validators)
 		const resolvedState = typeof stateOrOptions === 'string' ? stateOrOptions : 'defaultRender'
 
 		const resolvedOptions = typeof stateOrOptions === 'object' ?
