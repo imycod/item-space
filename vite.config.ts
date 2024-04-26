@@ -41,7 +41,7 @@ const viteConfig = defineConfig((mode: ConfigEnv) => {
 		server: {
 			proxy: {
 				[env.VITE_API_URL]: {
-					target: env.VITE_API_URL,
+					target: env.VITE_ADMIN_PROXY_PATH,
 					changeOrigin: true,
 					logLevel: 'debug',
 					rewrite: (path) => path.replace(env.VITE_API_URL, ''),
