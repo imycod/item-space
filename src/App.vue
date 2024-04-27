@@ -4,4 +4,8 @@
   <router-view/>
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss">
+#app{
+  height: 100vh;
+}
+</style>

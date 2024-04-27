@@ -1,10 +1,13 @@
-<script setup>
+<script lang="ts" setup>
 import { computed, watch, ref } from 'vue';
 import AppTopbar from './AppTopbar.vue';
 import AppFooter from './AppFooter.vue';
 import AppSidebar from './AppSidebar.vue';
 import AppConfig from './AppConfig.vue';
 import { useLayout } from '@/layout/composables/layout';
+import eventEmitter from "@/utils/eventEmitter";
+
+eventEmitter.emit('STYLE:REMOVE_CUSTOM_STYLE');
 
 const { layoutConfig, layoutState, isSidebarActive } = useLayout();
 

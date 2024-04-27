@@ -8,16 +8,19 @@
     "serve:dev": "vite --host --mode development",
     "serve:prod": "vite --host --mode production",
     "serve:test": "vite --host --mode test",
-    "build:dev": "vite  build --mode development",
+    "build:dev": "vue-tsc && vite build --mode development",
     "build:master": "vite build --mode production",
     "build:test": "vite build --mode test",
     "build": "vue-tsc && vite build --mode production",
     "preview": "vite preview",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore",
     "dev:component": "cypress open --component",
-    "test:component": "cypress run --component"
+    "test:component": "cypress run --component",
+    "build:tailwind": "sass src/assets/wind.scss src/assets/wind.css && tailwind build src/assets/wind.css -o public/wind.css",
+    "build:sass": "sass src/assets/styles.scss public/styles.css"
   },
   "dependencies": {
+    "@unisc-ui/item": "^0.0.49",
     "axios": "^1.6.8",
     "chart.js": "3.3.2",
     "element-plus": "^2.7.1",
@@ -54,6 +57,7 @@
     "unplugin-icons": "^0.18.5",
     "unplugin-vue-components": "^0.26.0",
     "vite": "^4.5.3",
+    "vite-svg-loader": "^5.1.0",
     "vue-tsc": "^2.0.6"
   }
 }

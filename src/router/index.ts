@@ -16,6 +16,18 @@ export const itemPage = [
 				path: '/dashboard',
 				name: 'dashboard',
 				component: () => import('@/views/item/Dashboard.vue')
+			},
+			{
+				path: '/tailwind-playground',
+				name: 'tailwind playground',
+				redirect: '/tailwind-playground/demo',
+				children: [
+					{
+						path:'/tailwind-playground/demo',
+						name:'t-playground-demo',
+						component: () => import('@/views/item/tailwind-playground/Demo.vue')
+					}
+				]
 			}
 		]
 	}
@@ -202,24 +214,25 @@ const router = createRouter({
 // })
 
 router.beforeEach(async (to, from, next) => {
-	const ssoParams = getSSOParamsFromURL(to);
-	console.log('ssoParams----', ssoParams);
-	const token = Local.get('token')
-	if (!token) {
-		// if (import.meta.env.VITE_NODE_ENV === 'development') {
-		// 	next(`/login?redirect=${to.path}&params=${JSON.stringify(to.query ? to.query : to.params)}`);
-		// 	Local.clear();
-		// } else {
-		// 	await useUserInfo().login({});
-		// 	next()
-		// }
-		await useUserInfo().login({});
-		// next()
-	} else if (token && to.path === '/login') {
-		next('/home');
-	} else {
-		next();
-	}
+	// const ssoParams = getSSOParamsFromURL(to);
+	// console.log('ssoParams----', ssoParams);
+	// const token = Local.get('token')
+	// if (!token) {
+	// 	// if (import.meta.env.VITE_NODE_ENV === 'development') {
+	// 	// 	next(`/login?redirect=${to.path}&params=${JSON.stringify(to.query ? to.query : to.params)}`);
+	// 	// 	Local.clear();
+	// 	// } else {
+	// 	// 	await useUserInfo().login({});
+	// 	// 	next()
+	// 	// }
+	// 	await useUserInfo().login({});
+	// 	// next()
+	// } else if (token && to.path === '/login') {
+	// 	next('/home');
+	// } else {
+	// 	next();
+	// }
+	next();
 })
 
 
