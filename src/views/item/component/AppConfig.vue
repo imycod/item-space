@@ -7,7 +7,6 @@ import router from "@/router";
 import {useThemeConfig} from "@/stores/themeConfig.ts";
 import {useI18n} from "vue-i18n";
 import {storeToRefs} from "pinia";
-import {removeStyle} from "@/utils/styles.ts"
 
 defineProps({
   simple: {
@@ -43,7 +42,6 @@ const isComponentView = ref(false)
 
 function onLayoutModeChange(value: string) {
   if (value === 'components') {
-    removeStyle('custom-wind-css')
     defaultPage.forEach(route => {
       router.addRoute(route)
     })

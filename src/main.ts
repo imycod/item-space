@@ -111,10 +111,16 @@ import VirtualScroller from 'primevue/virtualscroller';
 import BlockViewer from '@/components/BlockViewer.vue';
 
 import '@/assets/styles.scss';
+import eventEmitter from "@/utils/eventEmitter.ts";
+import {removeStyle} from "@/utils/styles.ts";
 // import "@/assets/wind.css";
 // import '@/assets/wind.css'
 // import Wind from "@/presets/wind";
 // import Lara from "@/presets/lara"
+
+eventEmitter.on('STYLE:REMOVE_CUSTOM_STYLE',()=>{
+	removeStyle('custom-wind-css')
+})
 
 const app = createApp(App);
 
