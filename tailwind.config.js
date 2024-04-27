@@ -1,3 +1,11 @@
+/*
+ * @Author: wuxs 317009160@qq.com
+ * @Date: 2024-04-18 22:30:21
+ * @LastEditors: wuxs 317009160@qq.com
+ * @LastEditTime: 2024-04-27 22:54:10
+ * @FilePath: \item-workspace\tailwind.config.js
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ */
 /** @type {import('tailwindcss').Config} */
 export default {
   content: [
@@ -5,6 +13,9 @@ export default {
     "./src/**/*.{vue,js,ts,jsx,tsx}",
     "./node_modules/primevue/**/*.{vue,js,ts,jsx,tsx}",
   ],
+  corePlugins: {
+    preflight: false,
+  },
   theme: {
     extend: {
       colors: {
@@ -32,9 +43,16 @@ export default {
         "surface-800": "rgb(var(--surface-800))",
         "surface-900": "rgb(var(--surface-900))",
         "surface-950": "rgb(var(--surface-950))",
+        /**   primary: {
+          100: "##ffead3",
+          200: "##ffd0a5",
+          300: "#ffaf6d",
+          400: "#ff8132",
+          500: "#ff5e0a",
+        },
+         */
       },
     },
   },
   plugins: [],
-}
-
+};

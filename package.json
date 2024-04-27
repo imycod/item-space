@@ -16,7 +16,8 @@
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore",
     "dev:component": "cypress open --component",
     "test:component": "cypress run --component",
-    "build:tailwind": "tailwind build src/assets/wind.css -o public/wind.css"
+    "build:tailwind": "sass src/assets/wind.scss src/assets/wind.css && tailwind build src/assets/wind.css -o public/wind.css",
+    "build:sass": "sass src/assets/styles.scss public/styles.css"
   },
   "dependencies": {
     "@unisc-ui/item": "^0.0.49",

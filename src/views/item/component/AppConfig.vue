@@ -75,7 +75,7 @@ function onLanguageChange(value: boolean | string) {
 </script>
 
 <template>
-  <button class="layout-config-button p-link" type="button" @click="onConfigButtonClick()">
+  <button class="layout-config-button p-link hover:bg-green-700/50" type="button" @click="onConfigButtonClick()">
     <i class="pi pi-cog"></i>
   </button>
 
