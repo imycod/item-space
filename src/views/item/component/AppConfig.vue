@@ -6,6 +6,7 @@ import {defaultPage} from "@/router";
 import router from "@/router";
 import {useThemeConfig} from "@/stores/themeConfig.ts";
 import {useI18n} from "vue-i18n";
+import {storeToRefs} from "pinia";
 
 defineProps({
   simple: {
@@ -52,19 +53,25 @@ function onLayoutModeChange(value: string) {
 
 
 const isLanguage = ref(false)
+const isJapanese = ref(false)
 const stores = useThemeConfig()
+const {themeConfig}= storeToRefs(stores)
 const {locale} = useI18n()
 
-function onLanguageChange(value: boolean) {
-  const lang = value ? 'zh-cn' : 'en';
+function onLanguageChange(value: boolean | string) {
+  let lang = '';
+  if (typeof value === 'string') {
+    lang = !isJapanese.value ? 'en' : 'jp';
+    isLanguage.value = isJapanese.value && false
+  } else {
+    lang = value ? 'zh-cn' : 'en';
+    isJapanese.value = value && false
+  }
   stores.setThemeConfig({
     globalI18n: lang
   })
-
   locale.value = lang
-  console.log(lang)
 }
-
 </script>
 
 <template>
@@ -87,6 +94,11 @@ function onLanguageChange(value: boolean) {
       <section class="py-4 flex align-items-center justify-content-between border-bottom-1 surface-border">
         <span class="text-xl font-semibold">{{ $t("user.title1") }}</span>
         <InputSwitch v-model="isLanguage" @update:modelValue="onLanguageChange"/>
+      </section>
+
+      <section class="py-4 flex align-items-center justify-content-between border-bottom-1 surface-border">
+        <span class="text-xl font-semibold">{{ $t("user.title2") }}</span>
+        <InputSwitch v-model="isJapanese" @update:modelValue="onLanguageChange('jp')"/>
       </section>
     </div>
   </Sidebar>

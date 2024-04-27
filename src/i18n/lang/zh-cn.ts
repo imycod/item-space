@@ -4,6 +4,13 @@ export default {
         home: '首页',
         system: '系统设置',
     },
+    menu:{
+        dashboard: '控制台',
+        settings: '设置',
+        home: '首页',
+        user: '用户',
+        about: '关于',
+    },
     staticRoutes: {
         login: '登录',
         signIn: '登录',
@@ -11,6 +18,7 @@ export default {
     },
     user: {
         title1: '语言切换',
+        title2: '日本语',
         newBtn: '全部已读',
     },
     notFound: {

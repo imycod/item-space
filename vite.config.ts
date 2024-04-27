@@ -10,7 +10,6 @@ import svgLoader from 'vite-svg-loader'
 
 const pathSrc = path.resolve(__dirname, 'src');
 // https://vitejs.dev/config/
-
 const viteConfig = defineConfig((mode: ConfigEnv) => {
 	const env = loadEnv(mode.mode, process.cwd());
 	console.log('env-----', env);
@@ -37,7 +36,8 @@ const viteConfig = defineConfig((mode: ConfigEnv) => {
 		],
 		resolve: {
 			alias: {
-				'@': fileURLToPath(new URL('./src', import.meta.url))
+				'@': fileURLToPath(new URL('./src', import.meta.url)),
+				'~': fileURLToPath(new URL('./src/views/item', import.meta.url)),
 			},
 		},
 		server: {
