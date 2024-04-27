@@ -6,10 +6,10 @@ export default {
     },
     menu:{
         dashboard: '控制台',
-        settings: '设置',
         home: '首页',
         user: '用户',
         about: '关于',
+        'tailwind playground': 'tailwind 练习场',
     },
     staticRoutes: {
         login: '登录',

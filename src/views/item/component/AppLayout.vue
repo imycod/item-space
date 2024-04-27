@@ -13,7 +13,6 @@ const {menuList, applications, handleMenuClick, handleIconClick} = useMenu()
 
 // 获取全局 i18n
 const {getGlobalI18n} = useI18()
-
 </script>
 
 <template>

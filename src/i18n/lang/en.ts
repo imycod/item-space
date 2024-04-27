@@ -5,7 +5,8 @@ export default {
 	},
 	menu: {
 		dashboard: 'dashboard',
-		settings: 'settings',
+		'tailwind playground': 'tailwind playground',
+		't-playground-demo': 't-playground-demo',
 		home: 'home',
 		user: 'user',
 		about: 'about',

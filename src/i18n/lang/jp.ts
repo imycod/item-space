@@ -5,9 +5,9 @@ export default {
 	},
 	menu:{
 		dashboard: '操作卓です',
-		settings: '設置します',
 		home: 'トップページです',
 		user: 'ユーザーです',
 		about: 'についてです',
+		'tailwind playground': 'tailwind 練習場です',
 	},
 }

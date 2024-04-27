@@ -16,6 +16,18 @@ export const itemPage = [
 				path: '/dashboard',
 				name: 'dashboard',
 				component: () => import('@/views/item/Dashboard.vue')
+			},
+			{
+				path: '/tailwind-playground',
+				name: 'tailwind playground',
+				redirect: '/tailwind-playground/demo',
+				children: [
+					{
+						path:'/tailwind-playground/demo',
+						name:'t-playground-demo',
+						component: () => import('@/views/item/tailwind-playground/Demo.vue')
+					}
+				]
 			}
 		]
 	}

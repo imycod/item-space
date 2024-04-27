@@ -365,21 +365,21 @@ export function useMenu() {
 			path: '/dashboard'
 		},
 		{
-			title: 'settings',
+			title: 'tailwind playground',
 			index: '2',
 			icon: 'ic:outline-settings',
 			// 特别的
 			special: true,
 			scrollY: 300,
-			path: '/settting',
+			path: '/tailwind-playground',
 			children: [
 				{
-					title: 'user',
+					title: 't-playground-demo',
 					index: '2-1',
 					icon: 'material-symbols:mode-heat-outline',
 					activeIcon: 'material-symbols:mode-heat',
 					iconActive: false,
-					path: '/setting/user1'
+					path: '/tailwind-playground/demo'
 				},
 				{
 					title: 'about',
