@@ -8,7 +8,7 @@
     "serve:dev": "vite --host --mode development",
     "serve:prod": "vite --host --mode production",
     "serve:test": "vite --host --mode test",
-    "build:dev": "vite  build --mode development",
+    "build:dev": "vue-tsc && vite build --mode development",
     "build:master": "vite build --mode production",
     "build:test": "vite build --mode test",
     "build": "vue-tsc && vite build --mode production",
