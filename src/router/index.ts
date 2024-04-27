@@ -202,24 +202,25 @@ const router = createRouter({
 // })
 
 router.beforeEach(async (to, from, next) => {
-	const ssoParams = getSSOParamsFromURL(to);
-	console.log('ssoParams----', ssoParams);
-	const token = Local.get('token')
-	if (!token) {
-		// if (import.meta.env.VITE_NODE_ENV === 'development') {
-		// 	next(`/login?redirect=${to.path}&params=${JSON.stringify(to.query ? to.query : to.params)}`);
-		// 	Local.clear();
-		// } else {
-		// 	await useUserInfo().login({});
-		// 	next()
-		// }
-		await useUserInfo().login({});
-		// next()
-	} else if (token && to.path === '/login') {
-		next('/home');
-	} else {
-		next();
-	}
+	// const ssoParams = getSSOParamsFromURL(to);
+	// console.log('ssoParams----', ssoParams);
+	// const token = Local.get('token')
+	// if (!token) {
+	// 	// if (import.meta.env.VITE_NODE_ENV === 'development') {
+	// 	// 	next(`/login?redirect=${to.path}&params=${JSON.stringify(to.query ? to.query : to.params)}`);
+	// 	// 	Local.clear();
+	// 	// } else {
+	// 	// 	await useUserInfo().login({});
+	// 	// 	next()
+	// 	// }
+	// 	await useUserInfo().login({});
+	// 	// next()
+	// } else if (token && to.path === '/login') {
+	// 	next('/home');
+	// } else {
+	// 	next();
+	// }
+	next();
 })
 
 
