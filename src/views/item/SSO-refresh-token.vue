@@ -8,10 +8,18 @@
 -->
 <template>
     <div>
-        <el-button>登录</el-button>
-        <el-button>受保护的接口</el-button>
-        <el-button>刷新token</el-button>
+        <el-button @click="login({username:'wuxs'})">登录</el-button>
+        <el-button @click="getProtectedResource">受保护的接口</el-button>
+        <el-button @click="refreshToken()">刷新token</el-button>
     </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import {getProtected, login} from '@/api/token'
+import {refreshToken} from '@/api/token/refreshToken.ts'
+function getProtectedResource() {
+  getProtected().then(res => {
+    console.log(res.payload)
+  })
+}
+</script>
