@@ -27,7 +27,7 @@ export async function refreshToken() {
     promise = null;
   });
   return promise;
-}
+} //
 
 export function isRefreshRequest(config) {
   return !!config.__isRefreshToken;
