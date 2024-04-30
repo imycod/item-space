@@ -15,17 +15,17 @@ import {isRefreshRequest, refreshToken} from "@/api/token/refreshToken.ts";
 const ins = axios.create({
 	baseURL: import.meta.env.VITE_API_URL,
 	timeout: 10000,
-	// headers:{
-	// Authorization: `Bearer ${Local.get('token')}`,
-	// }
+	headers: {
+		Authorization: `Bearer ${Local.get('token')}`,
+	}
 });
 
 function requestSuccessCallback(config: AxiosRequestConfig<any>) {
 	// 统一增加Authorization请求头, skipToken 跳过增加token
 	const token = Local.get("token");
-	if (token && !config.headers?.skipToken) {
-		config.headers["Authorization"] = `Bearer ${token}`;
-	}
+	// if (token && !config.headers?.skipToken) {
+	// 	config.headers["Authorization"] = `Bearer ${token}`;
+	// }
 	config.headers["Client-Id"] = import.meta.env.VITE_CLIENT_ID;
 
 	// console.log("config---", config);
@@ -52,7 +52,7 @@ async function responseSuccessCallback(response: AxiosResponse<any>) {
 	if (response.headers['authorization']) {
 		const token = response.headers['authorization'].replace("Bearer ", "");
 		Local.set("token", token);
-		// ins.defaults.headers["Authorization"] = `Bearer ${token}`;
+		ins.defaults.headers["Authorization"] = `Bearer ${token}`;
 	}
 	if (response.headers['x-refresh-token']) {
 		const refreshtoken = response.headers['x-refresh-token'].replace("Bearer ", "");
@@ -60,7 +60,7 @@ async function responseSuccessCallback(response: AxiosResponse<any>) {
 	}
 	// 无权限 token过期了
 	if (response.data.code === 401 && !isRefreshRequest(response.config)) {
-		console.log("response.data",response.data);
+		console.log("response.data", response.data);
 
 		// 最后 刷新token也过期呢？要么缓存被清空了？
 		// 刷新token
@@ -68,7 +68,8 @@ async function responseSuccessCallback(response: AxiosResponse<any>) {
 		if (isSuccess) {
 			// 重新请求
 			console.log("重新请求----是否用原来的token");
-			// response.config.headers.Authorization = `Bearer ${Local.get('token')}`;
+			console.log('response.config---', Local.get('token'))
+			response.config.headers['Authorization'] = `Bearer ${Local.get('token')}`;
 			const resp = await ins.request(response.config);
 			return resp;
 		} else {

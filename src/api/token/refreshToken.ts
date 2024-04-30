@@ -16,10 +16,11 @@ export async function refreshToken() {
 		return promise;
 	}
 	promise = new Promise(async (resolve) => {
+		console.log('Local.get("refreshtoken")---',Local.get("refreshtoken"))
 		const resp = await request.get(`/token/refresh`, {
-			// headers: {
-			// 	Authorization: `Bearer ${Local.get("refreshtoken")}`,
-			// },
+			headers: {
+				Authorization: `Bearer ${Local.get("refreshtoken")}`,
+			},
 			__isRefreshToken: true,
 		});
 		console.log('----')
