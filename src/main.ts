@@ -137,7 +137,7 @@ const CustomPreset = usePassThrough(
 );
 
 app.use(PrimeVue, {
-	ripple: true,
+	ripple: false,
 	unstyled: false,
 });
 app.use(ToastService);
