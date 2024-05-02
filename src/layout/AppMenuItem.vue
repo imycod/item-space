@@ -1,5 +1,6 @@
-<script setup>
+<script lang="ts" setup>
 import { ref, onBeforeMount, watch } from 'vue';
+import {useTitle} from "@vueuse/core"
 import { useRoute } from 'vue-router';
 import { useLayout } from '@/layout/composables/layout';
 
@@ -43,12 +44,16 @@ watch(
         isActiveMenu.value = newVal === itemKey.value || newVal.startsWith(itemKey.value + '-');
     }
 );
+
+const title = useTitle('PrimeVue',{
+  titleTemplate: '%s | Sakai'
+})
 const itemClick = (event, item) => {
     if (item.disabled) {
         event.preventDefault();
         return;
     }
-
+    title.value = item.label
     const { overlayMenuActive, staticMenuMobileActive } = layoutState;
 
     if ((item.to || item.url) && (staticMenuMobileActive.value || overlayMenuActive.value)) {
