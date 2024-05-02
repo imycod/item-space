@@ -1,5 +1,5 @@
 <script setup>
-import DynamicForm from "./dynamic-form/index.vue"
+import DynamicForm from "@/components/dynamic-form/index.vue"
 import { ref } from 'vue';
 
 const dropdownItems = ref([
