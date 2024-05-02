@@ -1,4 +1,5 @@
 <script setup>
+import DynamicForm from "./dynamic-form/index.vue"
 import { ref } from 'vue';
 
 const dropdownItems = ref([
@@ -117,5 +118,13 @@ const dropdownItem = ref(null);
                 </div>
             </div>
         </div>
+
+      <div class="col-12">
+        <div class="card">
+          <h5>Dynamic from</h5>
+          <DynamicForm></DynamicForm>
+        </div>
+      </div>
+
     </div>
 </template>
