@@ -1,7 +1,9 @@
-<script setup>
+<script setup lang="ts">
 import { ref, computed } from 'vue';
+import {storeToRefs} from "pinia";
 import { usePrimeVue } from 'primevue/config';
 import { useLayout } from '@/layout/composables/layout';
+import {useThemeConfig} from "@/stores/themeConfig.ts";
 
 defineProps({
     simple: {
@@ -57,12 +59,22 @@ const onMenuModeChange = (value) => {
 const onRippleChange = (value) => {
     layoutConfig.ripple.value = value;
 };
+
+const stores = useThemeConfig()
+const {themeConfig} = storeToRefs(stores)
 const onDarkModeChange = (value) => {
-    const newThemeName = value ? layoutConfig.theme.value.replace('light', 'dark') : layoutConfig.theme.value.replace('dark', 'light');
+
+    // const newThemeName = value ? layoutConfig.theme.value.replace('light', 'dark') : layoutConfig.theme.value.replace('dark', 'light');
+    stores.setThemeConfig({
+      isIsDark: value
+    })
+    const newThemeName = themeConfig.value.isIsDark ? layoutConfig.theme.value.replace('light', 'dark') : layoutConfig.theme.value.replace('dark', 'light');
 
     layoutConfig.darkTheme.value = value;
     onChangeTheme(newThemeName, value);
 };
+onDarkModeChange(themeConfig.value.isIsDark)
+
 const changeTheme = (theme, color) => {
     let newTheme, dark;
 

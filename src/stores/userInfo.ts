@@ -1,5 +1,5 @@
 import {defineStore} from 'pinia';
-import {Local} from '@/utils/storage';
+import {Session} from '@/utils/storage';
 import {login, refreshTokenApi} from '@/api/login/index';
 
 /**
@@ -36,8 +36,8 @@ export const useUserInfo = defineStore('userInfo', {
 				login(user)
 					.then((res) => {
 						// 存储token 信息
-						Local.set('token', res?.access_token);
-						Local.set('refresh_token', res?.refresh_token);
+						Session.set('token', res?.access_token);
+						Session.set('refresh_token', res?.refresh_token);
 						resolve(res);
 					})
 					.catch((err) => {
@@ -54,12 +54,12 @@ export const useUserInfo = defineStore('userInfo', {
 		 */
 		async refreshToken() {
 			return new Promise((resolve, reject) => {
-				const refreshToken = Local.get('refresh_token');
+				const refreshToken = Session.get('refresh_token');
 				refreshTokenApi(refreshToken)
 					.then((res) => {
 						// 存储token 信息
-						Local.set('token', res.access_token);
-						Local.set('refresh_token', res.refresh_token);
+						Session.set('token', res.access_token);
+						Session.set('refresh_token', res.refresh_token);
 						resolve(res);
 					})
 					.catch((err) => {

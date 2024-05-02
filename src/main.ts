@@ -1,8 +1,10 @@
 import {createApp} from 'vue';
 import App from './App.vue';
 import router from '@/router';
-import pinia from "@/stores"
-import { i18n } from '@/i18n';
+import createPinia from "@/stores" // 导入必须调用,才能触发trigger,1.国际化外部ts,js使用stores需要传入pinia,2.持久化又需要这种方式引入
+// import {createPinia} from "pinia";
+// import piniaPluginPersist from 'pinia-plugin-persistedstate';
+import {i18n} from '@/i18n';
 import PrimeVue from 'primevue/config';
 import {usePassThrough} from "primevue/passthrough";
 import AutoComplete from 'primevue/autocomplete';
@@ -116,23 +118,24 @@ import '@/assets/styles.scss';
 // import Lara from "@/presets/lara"
 
 const app = createApp(App);
-
+const pinia = createPinia();
+// pinia.use(piniaPluginPersist);
 app.use(router);
 app.use(pinia);
 // 可以继续在这里引入element等其它ui库
 app.use(i18n);
 
 const CustomPreset = usePassThrough(
-	// Lara,
-	{},
-	// Wind,
-	{mergeSections: true, mergeProps: true}
+    // Lara,
+    {},
+    // Wind,
+    {mergeSections: true, mergeProps: true}
 );
 
 app.use(PrimeVue, {
-	ripple: true,
-	// unstyled: false,
-	// pt: CustomPreset
+    ripple: true,
+    // unstyled: false,
+    // pt: CustomPreset
 });
 app.use(ToastService);
 app.use(DialogService);

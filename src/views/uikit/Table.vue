@@ -408,6 +408,13 @@ const calculateCustomerTotal = (name) => {
                 </DataTable>
             </div>
         </div>
+
+      <div class="col-12">
+        <div class="card">
+            <el-table :data="[]" />
+            <el-pagination :total="100" />
+        </div>
+      </div>
     </div>
 </template>
 

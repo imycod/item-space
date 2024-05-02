@@ -1,7 +1,7 @@
-import { createI18n } from 'vue-i18n';
-import pinia from '@/stores/index';
-import { storeToRefs } from 'pinia';
-import { useThemeConfig } from '@/stores/themeConfig';
+import {createI18n} from 'vue-i18n';
+import createPinia from "@/stores";
+import {storeToRefs} from 'pinia';
+import {useThemeConfig} from '@/stores/themeConfig';
 
 // 定义语言国际化内容
 
@@ -19,10 +19,10 @@ import zhcnLocale from 'element-plus/es/locale/lang/zh-cn';
 
 // 定义变量内容
 const messages = {};
-const element = { en: enLocale, 'zh-cn': zhcnLocale };
-const itemize = { en: [] as any[], 'zh-cn': [] as any[] };
-const modules: Record<string, any> = import.meta.glob('./**/*.ts', { eager: true });
-const pages: Record<string, any> = import.meta.glob('./../../**/**/**/i18n/*.ts', { eager: true });
+const element = {en: enLocale, 'zh-cn': zhcnLocale};
+const itemize = {en: [] as any[], 'zh-cn': [] as any[]};
+const modules: Record<string, any> = import.meta.glob('./**/*.ts', {eager: true});
+const pages: Record<string, any> = import.meta.glob('./../../**/**/**/i18n/*.ts', {eager: true});
 
 // 对自动引入的 modules 进行分类 en、zh-cn、zh-tw
 // https://vitejs.cn/vite3-cn/guide/features.html#glob-import
@@ -57,8 +57,9 @@ for (const key in itemize) {
 }
 
 // 读取 pinia 默认语言
+const pinia = createPinia()
 const stores = useThemeConfig(pinia);
-const { themeConfig } = storeToRefs(stores);
+const {themeConfig} = storeToRefs(stores);
 
 // 导出语言国际化
 export const i18n = createI18n({

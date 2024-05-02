@@ -1,25 +1,5 @@
 import {createRouter, createWebHistory} from 'vue-router';
 import AppLayout from '@/layout/AppLayout.vue';
-import ItemAppLayout from "@/views/item/component/AppLayout.vue"
-import {Local} from '@/utils/storage';
-import {useUserInfo} from '@/stores/userInfo';
-import eventEmitter from "@/utils/eventEmitter.ts";
-
-export const itemPage = [
-	{
-		path: '/',
-		name: 'item',
-		redirect: '/dashboard',
-		component: ItemAppLayout,
-		children: [
-			{
-				path: '/dashboard',
-				name: 'dashboard',
-				component: () => import('@/views/item/Dashboard.vue')
-			}
-		]
-	}
-]
 
 export const defaultPage = [
 	{
@@ -191,64 +171,12 @@ export const defaultPage = [
 
 const router = createRouter({
 	history: createWebHistory(),
-	routes: [
-		...itemPage,
-		// ...defaultPage
-	]
+	routes: defaultPage
 })
-
-// eventEmitter.on('API:UN_AUTHORIZED', () => {
-// 	router.push('/auth/login');
-// })
 
 router.beforeEach(async (to, from, next) => {
-	const ssoParams = getSSOParamsFromURL(to);
-	console.log('ssoParams----', ssoParams);
-	const token = Local.get('token')
-	if (!token) {
-		// if (import.meta.env.VITE_NODE_ENV === 'development') {
-		// 	next(`/login?redirect=${to.path}&params=${JSON.stringify(to.query ? to.query : to.params)}`);
-		// 	Local.clear();
-		// } else {
-		// 	await useUserInfo().login({});
-		// 	next()
-		// }
-		await useUserInfo().login({});
-		// next()
-	} else if (token && to.path === '/login') {
-		next('/home');
-	} else {
-		next();
-	}
+	next();
 })
-
-
-function getSSOParamsFromURL(route) {
-	let token: any = route?.query?.token;
-
-	const queryParamsFromRouteHash = getQueryParamsFromRouteHash(route);
-	const getParamValFromHashParams = (key: string) => {
-		const param = queryParamsFromRouteHash.find((item) => item[0] === key);
-		if (param) return param[1];
-		return;
-	};
-	if (!token) {
-		token = getParamValFromHashParams('token');
-	}
-
-	return {
-		token,
-	};
-}
-
-function getQueryParamsFromRouteHash(route) {
-	let hashStr = route?.hash || '?';
-	hashStr = hashStr.slice(hashStr.indexOf('?') + 1, hashStr.length);
-	return hashStr.split('&').map((str) => {
-		return str.split('=');
-	});
-}
-
 
 export default router;
 

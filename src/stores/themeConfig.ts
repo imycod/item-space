@@ -149,4 +149,5 @@ export const useThemeConfig = defineStore('themeConfig', {
             }
         },
     },
+    persist: true,
 });
