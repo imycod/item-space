@@ -9,10 +9,7 @@ declare module 'vue' {
   export interface GlobalComponents {
     BlockViewer: typeof import('./components/BlockViewer.vue')['default']
     DynamicFormItem: typeof import('./components/form-layout/DynamicFormItem.vue')['default']
-    ElButton: typeof import('element-plus/es')['ElButton']
     ElConfigProvider: typeof import('element-plus/es')['ElConfigProvider']
-    ElPagination: typeof import('element-plus/es')['ElPagination']
-    ElTable: typeof import('element-plus/es')['ElTable']
     HelloWorld: typeof import('./components/HelloWorld.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
