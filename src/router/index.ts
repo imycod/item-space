@@ -12,6 +12,11 @@ export const defaultPage = [
 				component: () => import('@/views/Dashboard.vue')
 			},
 			{
+				path: '/animation/3d-card',
+				name: 'animation',
+				component: () => import('@/views/animate-kit/3dCard.vue')
+			},
+			{
 				path: '/uikit/formlayout',
 				name: 'formlayout',
 				component: () => import('@/views/uikit/FormLayout.vue')
