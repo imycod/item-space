@@ -34,11 +34,12 @@ export const login = (data: any) => {
 	console.log('dataObj----', dataObj)
 
 	return request({
-		url: '/auth/oauth/token',
+		// url: '/auth/oauth/token',
+		url: '/login',
 		headers: {
 			'Content-Type': 'application/x-www-form-urlencoded',
-			isToken: false,
-			Authorization: basicAuth,
+			// isToken: false,
+			// Authorization: basicAuth,
 		},
 		method: 'post',
 		params: {randomStr, grant_type},

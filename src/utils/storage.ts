@@ -49,6 +49,7 @@ export const Session = {
 	},
 	// 获取临时缓存
 	get(key: string) {
+		console.log(Cookies.get('token'))
 		if (key === 'token' || key === 'refresh_token') return Cookies.get(key);
 		let json = <string>window.sessionStorage.getItem(key);
 		return JSON.parse(json);
