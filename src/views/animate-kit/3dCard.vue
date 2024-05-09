@@ -14,6 +14,61 @@ const cardTransform = computed(() => {
   const rotateY = (elementX.value - elementWidth.value / 2) / elementWidth.value * MAX_ROTATION
   return `perspective(1000px) rotateX(${-rotateX}deg) rotateY(${rotateY}deg)`
 })
+
+
+import {driver} from "driver.js";
+import "driver.js/dist/driver.css";
+const steps = [
+  {
+    element: '.layout-menu',
+    popover: {
+      title: 'Layout-menu',
+      description: 'Open the routes page',
+      position: 'bottom'
+    }
+  },
+  {
+    element: '#dashboard',
+    popover: {
+      title: 'Dashboard',
+      description: 'Indicate the current page location',
+      position: 'bottom'
+    }
+  },
+  {
+    element: '#animation',
+    popover: {
+      title: 'Animation',
+      description: 'Indicate the current page location',
+      position: 'left'
+    }
+  },
+  {
+    element: '#card-3d',
+    popover: {
+      title: '3D Card',
+      description: 'Indicate the 3D Card',
+      position: 'left'
+    }
+  },
+  {
+    element: '#uikit',
+    popover: {
+      title: 'UI Components',
+      description: 'Colorful UI components',
+      position: 'left'
+    }
+  },
+]
+const driverObj = driver({
+  showProgress: true,
+  steps,
+});
+
+
+function guide() {
+  driverObj.drive();
+}
 </script>
 
 <template>
@@ -30,6 +85,7 @@ const cardTransform = computed(() => {
       Lorem ipsum dolor sit amet, consectetur adipisicing elit
     </p>
   </div>
+  <Button @click="guide">引导</Button>
 </template>
 
 <style scoped lang="scss">
