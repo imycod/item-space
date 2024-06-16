@@ -1,5 +1,6 @@
 import {createRouter, createWebHistory} from 'vue-router';
 import AppLayout from '@/layout/AppLayout.vue';
+import {Session} from "@/utils/storage.ts"
 
 export const defaultPage = [
 	{
@@ -179,8 +180,17 @@ const router = createRouter({
 	routes: defaultPage
 })
 
+function isAuthenticated() {
+	const token = Session.get('token')
+	return token ? true : false
+}
+
 router.beforeEach(async (to, from, next) => {
-	next();
+	if (to.name !== 'login' && !isAuthenticated()) {
+		next({name: 'login'})
+	} else {
+		next()
+	}
 })
 
 export default router;
