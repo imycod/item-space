@@ -3,21 +3,35 @@ const eventNames = ['API:UN_AUTHORIZED', 'API:VALIDATION_ERROR', 'API:NOT_SERVIC
 type EventName = typeof eventNames[number];
 
 class EventEmitter {
-    private listeners: { [key in EventName]?: Set<Function> } = {
-        'API:UN_AUTHORIZED': new Set(),
-        'API:VALIDATION_ERROR': new Set(),
-        'API:UN_LOGIN': new Set(), // SSO
-        'API:NOT_SERVICE_ERROR': new Set(),
-        'STYLE:REMOVE_CUSTOM_STYLE': new Set(),
-    };
+	private listeners: { [key in EventName]?: Set<Function> } = {
+		'API:UN_AUTHORIZED': new Set(),
+		'API:VALIDATION_ERROR': new Set(),
+		'API:UN_LOGIN': new Set(), // SSO
+		'API:NOT_SERVICE_ERROR': new Set(),
+		'STYLE:REMOVE_CUSTOM_STYLE': new Set(),
+	};
 
-    on(eventName: EventName, listener: () => void) {
-        this.listeners[eventName].add(listener);
-    }
+	on(eventName: EventName, listener: () => void) {
+		this.listeners[eventName].add(listener);
+	}
 
-    emit(eventName: EventName, ...args: any[]) {
-        this.listeners[eventName]?.forEach((listener) => listener(...args));
-    }
+	emit(eventName: EventName, ...args: any[]) {
+		this.listeners[eventName]?.forEach((listener) => listener(...args));
+	}
+	off(eventName: EventName, listener: () => void) {
+		this.listeners[eventName].delete(listener);
+	}
 }
 
-export default new EventEmitter();
+const eventEmitter = new EventEmitter();
+export function useEventListener(eventName: EventName, listener: () => void) {
+	onMounted(() => {
+		eventEmitter.on(eventName, listener);
+	});
+
+	onScopeDispose(() => {
+		eventEmitter.off(eventName, listener);
+	});
+}
+
+export default eventEmitter;
