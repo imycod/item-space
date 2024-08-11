@@ -1,4 +1,4 @@
-const eventNames = ['API:UN_AUTHORIZED', 'API:VALIDATION_ERROR','THEME:CHANGE'] as const;
+const eventNames = ['API:UN_AUTHORIZED', 'API:VALIDATION_ERROR', 'THEME:CHANGE'] as const;
 
 type EventName = typeof eventNames[number];
 
@@ -16,6 +16,20 @@ class EventEmitter {
 	emit(eventName: EventName, ...args: any[]) {
 		this.listeners[eventName]?.forEach((listener) => listener(...args));
 	}
+	off(eventName: EventName, listener: () => void) {
+		this.listeners[eventName].delete(listener);
+	}
 }
 
-export default new EventEmitter();
+const eventEmitter = new EventEmitter();
+export function useEventListener(eventName: EventName, listener: () => void) {
+	onMounted(() => {
+		eventEmitter.on(eventName, listener);
+	});
+
+	onScopeDispose(() => {
+		eventEmitter.off(eventName, listener);
+	});
+}
+
+export default eventEmitter;
